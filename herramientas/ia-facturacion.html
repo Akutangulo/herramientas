@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & API Dashboard - ChatsBotsES</title>
+<link href="../assets/herramientas.css" rel="stylesheet" type="text/css">
+</head>
+<body>
 
+    <header>
+        <h1>ChatsBotsES AI Hub</h1>
+        <p class="subtitle">Panel de Control de APIs y Modelos LLM</p>
+    </header>
+    <nav class="nav-pills">
+        <a href="../index.html">Inicio</a>
+        <a href="seo-google.html">SEO</a>
+        <a href="#" class="active">Facturación APIs</a>
+        <a href="ia-playgrounds.html">Playgrounds & Chat</a>
+        <a href="mis-webs.html">Mis Webs</a>
+    </nav>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar API (OpenAI, Gemini, etc...)" onkeyup="filterCards()">
+    </div>
+
+    <div class="grid" id="toolsGrid">
+        </div>
+
+    <footer>
+        © 2026 Digital Command Center | Desarrollado para <a href="https://akutangulo.com">Akutangulo.com</a> 
+    </footer>
+
+    <script>
+        const tools = [
+            { name: "OpenAI", desc: "Monitorea el uso de tus modelos como GPT-4, GPT-3.5 y DALL·E.", url: "https://platform.openai.com/usage", color: "blue" },
+            { name: "Perplexity AI", desc: "Consulta tu consumo de tokens para la API de Perplexity y gestiona tus claves.", url: "https://www.perplexity.ai/account/api/billing", color: "purple" },
+            { name: "Google AI Studio", desc: "Accede a las estadísticas de uso de tus modelos Gemini y otras APIs de IA de Google.", url: "https://aistudio.google.com/usage?project=gen-lang-client-0784317302&tab=billing", color: "green" },
+            { name: "Groq", desc: "Revisa el consumo de la API de Groq para inferencia de LLMs de alta velocidad.", url: "https://console.groq.com/dashboard/usage", color: "red" },
+            { name: "OpenRouter", desc: "Gestiona tu uso y configura tus claves para acceder a múltiples LLMs en un solo lugar.", url: "https://openrouter.ai/settings/credits", color: "yellow" },
+            { name: "DeepSeek AI", desc: "Consulta las estadísticas de uso de tus modelos de lenguaje DeepSeek AI.", url: "https://platform.deepseek.com/usage", color: "blue" },
+            { name: "Fireworks AI", desc: "Monitorea tu consumo de la API de Fireworks AI para modelos de lenguaje.", url: "https://app.fireworks.ai/billing", color: "purple" },
+            { name: "Hugging Face", desc: "Gestiona la facturación y revisa el uso de tus modelos y APIs de inferencia.", url: "https://huggingface.co/settings/billing", color: "yellow" },
+            { name: "NVIDIA AI", desc: "Accede al panel de control de uso para los modelos y servicios de inferencia de NVIDIA.", url: "https://developer.nvidia.com/account", color: "green" },
+            { name: "Nomic AI (Atlas)", desc: "Uso de la plataforma Nomic Atlas para embeddings y visualización de datos.", url: "https://atlas.nomic.ai/data/akutangulo/org/settings/usage", color: "blue" },
+            { name: "Mistral AI", desc: "Monitorea tu consumo y estadísticas de uso de la API de Mistral.", url: "https://console.mistral.ai/usage/", color: "red" },
+            { name: "Pinecone", desc: "Gestiona tu uso de la base de datos vectorial de Pinecone y consulta estadísticas.", url: "https://app.pinecone.io/organizations/-Nwkt7ir2RhOOOi4IaaI/settings/billing/plans", color: "yellow" },
+            { name: "Qwen (Alibaba)", desc: "Accede a la información y gestión de los modelos de lenguaje Qwen.", url: "https://usercenter2-intl.aliyun.com/billing/", color: "blue" },
+            { name: "Tavily", desc: "Gestiona tus búsquedas optimizadas para agentes de IA (Search for AI).", url: "https://app.tavily.com/home", color: "green" },
+            { name: "LlamaIndex Cloud", desc: "Panel de control de tu cuenta LlamaCloud para aplicaciones RAG.", url: "https://cloud.llamaindex.ai/", color: "purple" },
+            { name: "Firecrawl", desc: "Convierte cualquier sitio web en Markdown limpio para tus LLMs.", url: "https://www.firecrawl.dev/app/usage", color: "red" },
+            { name: "SerpAPI", desc: "Resultados de búsqueda estructurados para alimentar tus procesos de IA.", url: "https://serpapi.com/dashboard", color: "blue" },
+            { name: "Brave Search API", desc: "Uso de la API de Brave Search para datos de búsqueda privados y frescos.", url: "https://api-dashboard.search.brave.com/app/dashboard", color: "yellow" },
+            { name: "OpenWeatherMap", desc: "Claves y uso para la API de datos meteorológicos históricos y actuales.", url: "https://home.openweathermap.org/api_keys", color: "blue" },
+            { name: "GetZep", desc: "Memoria a largo plazo y gráfico de conocimiento para tus chatbots.", url: "https://app.getzep.com/", color: "green" }
+        ];
+
+        function displayTools(items) {
+            const grid = document.getElementById('toolsGrid');
+            grid.innerHTML = items.map(item => `
+                <div class="card ${item.color || ''}">
+                    <div>
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                    <a href="${item.url}" target="_blank" class="btn">Abrir Dashboard</a>
+                </div>
+            `).join('');
+        }
+
+        function filterCards() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = tools.filter(t => 
+                t.name.toLowerCase().includes(query) || 
+                t.desc.toLowerCase().includes(query)
+            );
+            displayTools(filtered);
+        }
+
+        // Inicializar
+        displayTools(tools);
+    </script>
+</body>
+</html>
