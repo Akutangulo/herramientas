@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Playgrounds & Consoles - ChatsBotsES</title>
+    <link href="../assets/herramientas.css" rel="stylesheet" type="text/css">
+</head>
+<body>
 
+    <header>
+        <h1>AI Playgrounds & Consoles</h1>
+        <p class="subtitle">Laboratorios de experimentación y chats oficiales de modelos</p>
+    </header>
+    <nav class="nav-pills">
+        <a href="../index.html">Inicio</a>
+        <a href="seo-google.html">SEO</a>
+        <a href="ia-facturacion.html">Facturación APIs</a>
+        <a href="#" class="active">Playgrounds & Chat</a>
+        <a href="mis-webs.html">Mis Webs</a>
+    </nav>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar laboratorio..." onkeyup="filterCards()">
+    </div>
+
+    <div class="grid" id="toolsGrid">
+        </div>
+
+    <footer>
+        © 2026 Digital Command Center | Desarrollado para <a href="https://akutangulo.com">Akutangulo.com</a> 
+    </footer>
+
+    <script>
+        const playTools = [
+            { name: "Google AI Studio", desc: "Prueba Gemini 1.5 Pro/Flash, ajusta temperatura y tokens en un entorno profesional.", url: "https://aistudio.google.com/", color: "google" },
+            { name: "OpenAI Platform Chat", desc: "Acceso al chat oficial de desarrolladores para probar GPT-4o y modelos o1.", url: "https://platform.openai.com/chat", color: "openai" },
+            { name: "Anthropic Console", desc: "El Workbench de Claude para probar modelos Sonnet, Opus y Haiku con control total.", url: "https://console.anthropic.com/workbench", color: "anthropic" },
+            { name: "Perplexity Labs", desc: "Entorno de pruebas para los modelos de búsqueda y LLMs de código abierto de Perplexity.", url: "https://www.perplexity.ai/labs", color: "google" },
+            { name: "Groq Playground", desc: "Prueba la velocidad extrema de Llama 3, Mixtral y Gemma en la arquitectura LPU.", url: "https://console.groq.com/playground", color: "meta" },
+            { name: "Mistral La Plateforme", desc: "Prueba Mistral Large, Pixtral y Codestral en su consola oficial.", url: "https://console.mistral.ai/build/chat", color: "mistral" },
+            { name: "DeepSeek Chat", desc: "Consola directa para interactuar con los modelos DeepSeek V3 y R1.", url: "https://chat.deepseek.com/", color: "openai" },
+            { name: "OpenRouter Chat", desc: "Interfaz unificada para chatear con CUALQUIER modelo del mercado usando tus créditos.", url: "https://openrouter.ai/chat", color: "primary-purple" },
+            { name: "Hugging Face Chat", desc: "Prueba los modelos Open Source más recientes (Llama, Qwen, Command R).", url: "https://huggingface.co/chat/", color: "meta" }
+        ];
+
+        function displayTools(items) {
+            const grid = document.getElementById('toolsGrid');
+            grid.innerHTML = items.map(item => `
+                <div class="card ${item.color}">
+                    <div>
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                    <a href="${item.url}" target="_blank" class="btn">Entrar al Laboratorio</a>
+                </div>
+            `).join('');
+        }
+
+        function filterCards() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = playTools.filter(t => 
+                t.name.toLowerCase().includes(query) || 
+                t.desc.toLowerCase().includes(query)
+            );
+            displayTools(filtered);
+        }
+
+        displayTools(playTools);
+    </script>
+</body>
+</html>
